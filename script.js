@@ -29,27 +29,24 @@ function addListAfterKeypress(event) {
 		createListElement();
 	}
 }
-
-function uiClick(e){
+// ui tag control the event 
+function uiClick(event){
 	console.log(e);
-	if(e.target.tagName === "LI"){
-		console.log("strike is work");
-		e.target.classList.toggle("doneColor");
+	if(event.target.tagName === "LI"){
+		toggleList(event);
 	}
-	if(e.target.id === "delete"){
-		console.log("delete is work");
-		var list = document.getElementById("listnode");
-		list.remove(list[0]);
+	if(event.target.id === "delete"){
+		deleteListElement();
 	}
 }
-function deleteListAfterClick() {
-	deleteListElement();
+function toggleList(event){
+	event.target.classList.toggle("doneColor");
 }
 function deleteListElement() {
-	console.log("delete is work");
-	var list = document.getElementById("list1");
-	list.removeChild(list.childNodes[0]);
+	var list = document.getElementById("listnode");
+	list.remove(list[0]);
 }
+
 ul.addEventListener("click", uiClick);
 button.addEventListener("click", addListAfterClick);
 input.addEventListener("keypress", addListAfterKeypress);
